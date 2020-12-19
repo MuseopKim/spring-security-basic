@@ -55,12 +55,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
                 .rememberMe()
                 .rememberMeParameter("remember")
-               .tokenValiditySeconds(3600)
-               .userDetailsService(userDetailsService)
+                .tokenValiditySeconds(3600)
+                .userDetailsService(userDetailsService);
+        http
+                .sessionManagement()
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(true)
        .and()
-               .sessionManagement()
-               .maximumSessions(1)
-               .maxSessionsPreventsLogin(true)
+                .sessionFixation()
+                .changeSessionId()
        ;
     }
 }
