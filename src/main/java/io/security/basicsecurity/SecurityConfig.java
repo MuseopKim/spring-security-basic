@@ -71,8 +71,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
                         response.sendRedirect("/denied");
                     }
-                })
-                ;
+                });
+        http
+                .csrf().disable();
 
     }
 }
