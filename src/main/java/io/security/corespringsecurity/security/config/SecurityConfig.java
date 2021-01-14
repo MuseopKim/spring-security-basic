@@ -1,6 +1,5 @@
-package io.security.basicsecurity.security.config;
+package io.security.corespringsecurity.security.config;
 
-import jdk.internal.dynalink.support.NameCodec;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,8 +19,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         String password = passwordEncoder().encode("1111");
 
         auth.inMemoryAuthentication().withUser("user").password(password).roles("USER");
-        auth.inMemoryAuthentication().withUser("manager").password(password).roles("MANAGER");
-        auth.inMemoryAuthentication().withUser("admin").password(password).roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("manager").password(password).roles("MANAGER", "USER");
+        auth.inMemoryAuthentication().withUser("admin").password(password).roles("ADMIN", "USER", "MANAGER");
     }
 
     @Bean
